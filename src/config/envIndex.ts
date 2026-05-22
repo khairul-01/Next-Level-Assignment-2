@@ -5,6 +5,7 @@ dotenv.config({quiet:true});
 
 const envConfig = {
     port: env.PORT,
+    database_url: env.DATABASE_URL
 }
 
 export default envConfig;
