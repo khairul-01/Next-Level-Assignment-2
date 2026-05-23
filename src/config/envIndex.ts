@@ -6,7 +6,9 @@ dotenv.config({quiet:true});
 const envConfig = {
     port: env.PORT,
     database_url: env.DATABASE_URL as string,
-    node_env: env.NODE_ENV as string
+    node_env: env.NODE_ENV as string,
+    jwt_access_secret: env.JWT_ACCESS_SECRET as string,
+    jwt_refresh_secret: env.JWT_REFRESH_SECRET as string
 }
 
 export default envConfig;
