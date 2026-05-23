@@ -1,6 +1,6 @@
 import envConfig from "../config/envIndex";
 import { TUserResponse } from "../types/typeIndex";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 export const signToken = (payload: TUserResponse) => {
 
@@ -13,4 +13,12 @@ export const signToken = (payload: TUserResponse) => {
     })
 
     return {accessToken, refreshToken}
+}
+
+export const verifyToken = (token: string, type: "access" | "refresh") => {
+    const secret = type === "refresh" ? envConfig.jwt_refresh_secret : envConfig.jwt_access_secret;
+
+    const decoded = jwt.verify(token, secret) as JwtPayload;
+    // console.log("decoded ", decoded)
+    return decoded;
 }

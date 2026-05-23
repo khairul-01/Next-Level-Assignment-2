@@ -22,13 +22,19 @@ const login = async(req: Request, res: Response) => {
         sendResponse(res, {message: "Invalid email or password"}, 401)
     }
 
-    const {accessToken}  = signToken(user);
+    const {accessToken, refreshToken}  = signToken(user);
     // console.log('accessToken', accessToken)
+    res.cookie("refreshToken", refreshToken, {
+        secure: false,
+        httpOnly: true,
+        sameSite: "lax"
+    })
+
     const result = {
         token: accessToken,
         user: user
     }
-
+    console.log("headers", req.headers.authorization)
     sendResponse(res, {message: "Login successful", data: result}, 200)
 
 }
