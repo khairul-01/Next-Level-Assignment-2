@@ -6,8 +6,12 @@ const route = Router();
 
 route.post("/issues", auth, authorizeRoles("maintainer","contributor"), issuesController.createIssues);
 
-route.get("/issues/:id", issuesController.getSingleIssue);
+route.get("/issues/:id", auth, issuesController.getSingleIssue);
 
-route.get("/issues", issuesController.getAllIssues);
+route.get("/issues", auth, issuesController.getAllIssues);
+
+route.patch("/issues/:id", auth, issuesController.updateIssue);
+
+route.delete("/issues/:id", auth, authorizeRoles("maintainer"), issuesController.deleteIssue);
 
 export const issueRoute = route;

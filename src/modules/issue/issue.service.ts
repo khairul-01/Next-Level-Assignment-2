@@ -1,5 +1,5 @@
 import { pool } from "../../db/dbIndex";
-import { TCreateIssuePayload } from "../../types/typeIndex";
+import { TCreateIssuePayload, TIssueType } from "../../types/typeIndex";
 
 class IssuesService {
   // create issue
@@ -97,6 +97,26 @@ class IssuesService {
     );
 
     return result.rows;
+  }
+
+  async patchIssue (id: string, title: string, description: string, type: TIssueType)  {
+    const result = await pool.query(`
+        UPDATE issues
+        SET title = $1, description = $2, type = $3
+        WHERE id = $4
+        RETURNING *
+        `,[title, description, type, id]);
+
+    return result.rows[0];
+  }
+
+  async removeIssue (deleteId: string) {
+    const result = await pool.query(`
+        DELETE FROM issues
+        WHERE id = $1
+        `,[deleteId]);
+        // console.log("Deleted: ", result);
+    return result.rowCount;
   }
 
 }
