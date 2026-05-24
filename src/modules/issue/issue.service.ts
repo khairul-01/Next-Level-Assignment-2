@@ -1,5 +1,5 @@
-import { pool } from "../../db/dbIndex";
-import { TCreateIssuePayload, TIssueType } from "../../types/typeIndex";
+import { pool } from "../../db/dbIndex.js";
+import { TCreateIssuePayload, TIssueType } from "../../types/typeIndex.js";
 
 class IssuesService {
   // create issue

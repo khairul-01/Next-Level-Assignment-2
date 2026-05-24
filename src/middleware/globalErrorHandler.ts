@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import envConfig from "../config/envIndex";
+import envConfig from "../config/envIndex.js";
 
 const globalErrorHandler = (err: unknown, req: Request, res: Response, next: NextFunction) => {
     res.status(500).json({

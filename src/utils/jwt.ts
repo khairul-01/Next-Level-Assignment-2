@@ -1,5 +1,5 @@
-import envConfig from "../config/envIndex";
-import { TUserResponse } from "../types/typeIndex";
+import envConfig from "../config/envIndex.js";
+import { TUserResponse } from "../types/typeIndex.js";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 export const signToken = (payload: TUserResponse) => {

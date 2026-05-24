@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { sendResponse } from "../utils/sendResponse";
-import { verifyToken } from "../utils/jwt";
-import { pool } from "../db/dbIndex";
-import { TRole } from "../types/typeIndex";
+import { sendResponse } from "../utils/sendResponse.js";
+import { verifyToken } from "../utils/jwt.js";
+import { pool } from "../db/dbIndex.js";
+import { TRole } from "../types/typeIndex.js";
 
 export const auth = async (req: Request, res: Response, next: NextFunction) => {
     try {

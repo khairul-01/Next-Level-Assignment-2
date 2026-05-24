@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import authService from "./auth.service";
-import { sendResponse } from "../../utils/sendResponse";
-import { signToken } from "../../utils/jwt";
+import authService from "./auth.service.js";
+import { sendResponse } from "../../utils/sendResponse.js";
+import { signToken } from "../../utils/jwt.js";
 
 const signup = async(req: Request, res: Response) => {
     const user = await authService.createUser(req.body);

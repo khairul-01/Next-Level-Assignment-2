@@ -1,6 +1,6 @@
-import app from "./app"
-import envConfig from "./config/envIndex";
-import { initDB } from "./db/dbIndex";
+import app from "./app.js"
+import envConfig from "./config/envIndex.js";
+import { initDB } from "./db/dbIndex.js";
 
 const main = async () => {
     initDB();

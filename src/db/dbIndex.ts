@@ -1,5 +1,5 @@
 import { Pool } from "pg";
-import envConfig from "../config/envIndex";
+import envConfig from "../config/envIndex.js";
 
 export const pool = new Pool({
   connectionString: envConfig.database_url,

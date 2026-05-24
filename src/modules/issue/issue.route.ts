@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { issuesController } from "./issues.controller";
-import { auth, authorizeRoles } from "../../middleware/auth";
+import { issuesController } from "./issues.controller.js";
+import { auth, authorizeRoles } from "../../middleware/auth.js";
 
 const route = Router();
 

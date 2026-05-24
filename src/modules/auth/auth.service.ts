@@ -1,5 +1,5 @@
-import { pool } from "../../db/dbIndex";
-import { TCreateUserPayload } from "../../types/typeIndex";
+import { pool } from "../../db/dbIndex.js";
+import { TCreateUserPayload } from "../../types/typeIndex.js";
 import bcrypt from "bcrypt";
 
 class AuthService {

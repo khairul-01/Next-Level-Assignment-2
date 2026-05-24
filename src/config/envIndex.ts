@@ -4,7 +4,7 @@ import { env } from "process";
 dotenv.config({quiet:true});
 
 const envConfig = {
-    port: env.PORT,
+    port: env.PORT || 5000,
     database_url: env.DATABASE_URL as string,
     node_env: env.NODE_ENV as string,
     jwt_access_secret: env.JWT_ACCESS_SECRET as string,
