@@ -56,7 +56,36 @@ const getSingleIssue = async (req: Request, res: Response) => {
   }
 };
 
+const getAllIssues = async (req: Request, res: Response) => {
+  try {
+    const sort = req.query.sort as string | undefined;
+    console.log("sort query ", sort);
+    const allIssues = await issueService.getAllIssueFromDb(sort);
+
+    if (!allIssues) {
+      sendResponse(
+        res,
+        { message: "Failed to get issues", error: true },
+        400,
+      );    
+    }
+    sendResponse(
+        res,
+        { message: "Issue retrieved successfully", data: allIssues },
+        200,
+      );
+
+  } catch (error) {
+    sendResponse(
+      res,
+      { message: "Something wrong, Failed to get issues", error: true },
+      400,
+    );
+  }
+}
+
 export const issuesController = {
   createIssues,
   getSingleIssue,
+  getAllIssues,
 };

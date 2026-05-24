@@ -48,8 +48,7 @@ class IssuesService {
   async getSingleIssueFromDb(issueId: string) {
     const issueResult = await pool.query(
       `
-    SELECT
-      i.id, i.title, i.description, i.type, i.status,
+    SELECT i.id, i.title, i.description, i.type, i.status,
 
       json_build_object(
         'id', u.id,
@@ -66,14 +65,40 @@ class IssuesService {
     ON i.reporter_id = u.id
 
     WHERE i.id = $1
-            `,
-      [issueId],
+        `,[issueId],
     );
 
     const issue = issueResult.rows[0];
 
     return issue;
   }
+
+  async getAllIssueFromDb(sort?: string) {
+    const result = await pool.query(
+      `
+    SELECT i.id, i.title, i.description, i.type, i.status,
+
+      json_build_object(
+        'id', u.id,
+        'name', u.name,
+        'role', u.role
+      ) AS reporter,
+
+      i.created_at,
+      i.updated_at
+
+    FROM issues i
+
+    JOIN users u
+    ON i.reporter_id = u.id
+
+    ORDER BY created_at ${sort === "oldest" ? "ASC" : "DESC"}
+            `
+    );
+
+    return result.rows;
+  }
+
 }
 
 export default new IssuesService();

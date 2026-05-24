@@ -8,4 +8,6 @@ route.post("/issues", auth, authorizeRoles("maintainer","contributor"), issuesCo
 
 route.get("/issues/:id", issuesController.getSingleIssue);
 
+route.get("/issues", issuesController.getAllIssues);
+
 export const issueRoute = route;
