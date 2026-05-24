@@ -4,6 +4,8 @@ import { auth, authorizeRoles } from "../../middleware/auth";
 
 const route = Router();
 
-route.post("/issues", auth, authorizeRoles("maintainer"), issuesController.createIssues)
+route.post("/issues", auth, authorizeRoles("maintainer","contributor"), issuesController.createIssues);
+
+route.get("/issues/:id", issuesController.getSingleIssue);
 
 export const issueRoute = route;

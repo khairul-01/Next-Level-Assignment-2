@@ -16,7 +16,11 @@ const createIssues = async (req: Request, res: Response) => {
   });
   // console.log("create issue ", issue)
   if (!issue) {
-    sendResponse(res, { message: "Failed to create a Issue" }, 400);
+    sendResponse(
+      res,
+      { message: "Failed to create a Issue", error: true },
+      400,
+    );
     return;
   }
   sendResponse(
@@ -26,6 +30,33 @@ const createIssues = async (req: Request, res: Response) => {
   );
 };
 
+const getSingleIssue = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    console.log("Id: ", id);
+    const result = await issueService.getSingleIssueFromDb(id as string);
+    if (!result) {
+      sendResponse(
+        res,
+        { message: "Failed to get issue", error: true },
+        400,
+      );    
+    }
+    sendResponse(
+        res,
+        { message: "Issue retrieved successfully", data: result },
+        200,
+      );
+  } catch (error) {
+    sendResponse(
+      res,
+      { message: "Something wrong, Failed to get issue", error: true },
+      400,
+    );
+  }
+};
+
 export const issuesController = {
   createIssues,
+  getSingleIssue,
 };
