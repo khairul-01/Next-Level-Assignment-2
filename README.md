@@ -30,4 +30,4 @@ Fist setup basic node, express, typescript and configure package.json and tsconf
 - DELETE: /api/issues/:id (maintainer only)
 
 ### Database schema
-There are two relational database, one is users table another is issues table. Two tables are references with one to many connection by user(id) of users and reporter_id of issues.
+There are two relational database table, one is users table another is issues table. Two tables are references with one to many connection by user(id) of users and reporter_id of issues.
